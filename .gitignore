@@ -286,3 +286,6 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/MindReader/MindReader/external
+/MindReader/MindReader/external/edk.dll
+/MindReader/MindReader/external/AverageBandPowers.exe
