@@ -56,5 +56,18 @@ namespace MindReader.model
             { this._Theta = value; }
         }
 
+
+        public static BrainWaveSummary generateDefaultState()
+        {
+            BrainWaveSummary summary = new BrainWaveSummary();
+            summary.Alpha = 0;
+            summary.Low_Beta = 0;
+            summary.High_Beta = 0;
+            summary.Gamma = 0;
+            summary.Theta = 0;
+
+            return summary;
+        }
+
     }
 }

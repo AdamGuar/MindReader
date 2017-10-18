@@ -12,7 +12,7 @@ namespace MindReader.integration
     {
         private volatile bool _shouldStop;
 
-        public static BrainWaveSummary currentState;
+        public static BrainWaveSummary currentState = BrainWaveSummary.generateDefaultState();
 
         CSVFileReader reader = new CSVFileReader();
 

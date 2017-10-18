@@ -50,16 +50,16 @@ namespace MindReader
             browserSettings.UniversalAccessFromFileUrls = CefState.Enabled;
             chromeBrowser.BrowserSettings = browserSettings;
 
-            // Register an object in javascript named "cefCustomObject" with function of the CefCustomObject class :3
-            chromeBrowser.RegisterJsObject("mainPageController", new MainPageControler(chromeBrowser, this));
+            
         }
 
 
         public Form1()
         {
             InitializeComponent();
-
             InitializeChromium();
+            // Register an object in javascript named "cefCustomObject" with function of the CefCustomObject class :3
+            chromeBrowser.RegisterJsObject("mainPageController", new MainPageControler(chromeBrowser, this));
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

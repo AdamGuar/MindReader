@@ -1,5 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using MindReader.integration;
+using MindReader.model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,6 +35,36 @@ namespace MindReader.presentation
             ProcessStartInfo start = new ProcessStartInfo("cmd.exe", "/c pause");
             Process.Start(start);
         }
+
+
+        public double getAlhpaPower()
+        {
+            return ReaderWorker.currentState.Alpha;
+        }
+
+        public double getHighBetaPower()
+        {
+            return ReaderWorker.currentState.High_Beta;
+        }
+
+        public double getLowBetaPower()
+        {
+            return ReaderWorker.currentState.Low_Beta;
+        }
+
+        public double getThetaPower()
+        {
+            return ReaderWorker.currentState.Theta;
+        }
+
+
+        public double getGammaPower()
+        {
+            return ReaderWorker.currentState.Gamma;
+        }
+
+
+
     }
 
 }

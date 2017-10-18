@@ -268,7 +268,9 @@
     <Content Include="html-resources\js\bootstrap.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="html-resources\js\jquery.min.js" />
+    <Content Include="html-resources\js\jquery.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="html-resources\js\npm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -284,8 +286,12 @@
     <Content Include="html-resources\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="html-resources\vendor\bootstrap\js\bootstrap.js" />
-    <Content Include="html-resources\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="html-resources\vendor\bootstrap\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="html-resources\vendor\bootstrap\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="html-resources\vendor\datatables-plugins\dataTables.bootstrap.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

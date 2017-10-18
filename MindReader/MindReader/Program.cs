@@ -16,7 +16,10 @@ namespace MindReader
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {   
+
+            //Reader thread initialization
+
             CSVFileReader CSVReader = new CSVFileReader();
             BandDataExeRunner runner = new BandDataExeRunner();
             runner.RunBandReader();
@@ -27,9 +30,10 @@ namespace MindReader
             workerThread.Start();
             while (!workerThread.IsAlive);
             Thread.Sleep(1000);
+            //End of reader thread initialization
 
-            BrainWaveSummary summary = ReaderWorker.currentState;
-            
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
