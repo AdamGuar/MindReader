@@ -5,26 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using MindReader.model;
 using System.Threading;
+using System.Collections;
 
 namespace MindReader.integration
 {
     class ReaderWorker
     {
         private volatile bool _shouldStop;
+        private ArrayList FiltersList = new ArrayList();
+
 
         public static BrainWaveSummary currentState = BrainWaveSummary.generateDefaultState();
+        public static String currentInformation = "";
 
         CSVFileReader reader = new CSVFileReader();
 
-        /*
-        public BrainWaveSummary CurrentDataState {
-            get {
-                return _currentDataState;
-            }
-            set {
-               _currentDataState = value;
-            }
-        }*/
+
+
+        public void addFilter(Filter f)
+        {
+            this.FiltersList.Add(f);
+        }
+
+        
 
         public void RequestStop()
         {
@@ -35,11 +38,25 @@ namespace MindReader.integration
         {
             while (!_shouldStop)
             {
-                ReaderWorker.currentState = reader.readBandPowers();
+                try {
+                    ReaderWorker.currentState = filter(reader.readBandPowers());
+                }catch (CSVFileAccessException ex){
+                    //Do nothing;
+                }
                 Thread.Sleep(1000);
             }
         }
 
+
+        private BrainWaveSummary filter(BrainWaveSummary data)
+        {
+            BrainWaveSummary result = data;
+            foreach (Filter f in FiltersList)
+            {
+                result = f.FilterData(result);
+            }
+            return result;
+        }
 
     }
 }

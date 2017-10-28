@@ -64,7 +64,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="integration\BandDataExeRunner.cs" />
+    <Compile Include="integration\BasicDataFilter.cs" />
+    <Compile Include="integration\CSVFileAccessException.cs" />
     <Compile Include="integration\CSVFileReader.cs" />
+    <Compile Include="integration\Filter.cs" />
     <Compile Include="integration\ReaderWorker.cs" />
     <Compile Include="model\BrainWaveSummary.cs" />
     <Compile Include="presentation\MainPageControler.cs" />

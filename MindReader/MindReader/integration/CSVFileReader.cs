@@ -16,7 +16,13 @@ namespace MindReader.integration
 
         private String ReadLastLine()
         {
-            String lastLine = File.ReadLines(CsvPath).Last();
+            String lastLine;
+            try { 
+                 lastLine = File.ReadLines(CsvPath).Last();
+            }catch(IOException ex)
+            {
+                throw new CSVFileAccessException();
+            }
             return lastLine;
         }
 
