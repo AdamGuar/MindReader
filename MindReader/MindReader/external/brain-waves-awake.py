@@ -21,15 +21,15 @@ gamma = ctrl.Antecedent(np.arange(0, 10001, 1), 'gamma')
 
 # ==== Membership function of input variables
 
-alpha['low'] = fuzz.trapmf(alpha.universe, [0, 2, 5, 7])
+alpha['low'] = fuzz.trapmf(alpha.universe, [0, 0, 5, 7])
 alpha['optimal'] = fuzz.trapmf(alpha.universe, [5, 7, 150, 470])
 alpha['high'] = fuzz.trapmf(alpha.universe, [150, 470, 1000, 10000])
 
-beta['low'] = fuzz.trapmf(beta.universe, [0, 2, 5, 7])
+beta['low'] = fuzz.trapmf(beta.universe, [0, 0, 5, 7])
 beta['optimal'] = fuzz.trapmf(beta.universe, [5, 7, 150, 470])
 beta['high'] = fuzz.trapmf(beta.universe, [150, 470, 1000, 10000])
 
-gamma['low'] = fuzz.trapmf(gamma.universe, [0, 2, 60, 80])
+gamma['low'] = fuzz.trapmf(gamma.universe, [0, 0, 60, 80])
 gamma['optimal'] = fuzz.trapmf(gamma.universe, [60, 80, 700, 800])
 gamma['high'] = fuzz.trapmf(gamma.universe, [700, 800, 1000, 10000])
 
@@ -40,7 +40,7 @@ gamma['high'] = fuzz.trapmf(gamma.universe, [700, 800, 1000, 10000])
 activity = ctrl.Consequent(np.arange(0, 101, 1), 'activity')
 
 # ==== Membership function of input variables
-activity['brain-injuries'] = fuzz.trapmf(activity.universe, [0, 2, 15, 20])
+activity['brain-injuries'] = fuzz.trapmf(activity.universe, [0, 0, 15, 20])
 activity['daydreaming'] = fuzz.trapmf(activity.universe, [15, 20, 35, 40])
 activity['optimal-relaxed'] = fuzz.trapmf(activity.universe, [35, 40, 55, 60])
 activity['adrenaline-focused'] = fuzz.trapmf(activity.universe, [55, 60, 75, 80])

@@ -68,6 +68,18 @@ namespace MindReader.presentation
             FuzzyModelRunner.Refresh();
         }
 
+        public double getAwaknessLVL()
+        {
+            return FuzzyModelRunner._Awakness_LVL;
+        }
+
+        public string getAwaknessLabel()
+        {
+            return FuzzyModelRunner._Awankess_Label;
+        }
+
+
+
     }
 
 }

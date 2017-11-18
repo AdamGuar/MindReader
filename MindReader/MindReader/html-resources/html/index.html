@@ -237,7 +237,7 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="alert alert-info">
+                                <div id="awaknessLabel" class="alert alert-info">
                                     <strong>Info!</strong> Indicates a neutral informative change or action.
                                 </div>
                                 <div id="morris-bar-chart-awakness"></div>
@@ -359,8 +359,14 @@
     <!--Action handlers-->
     <script>
         $("#reload-button").click(function () {
-            alert("Handler for .click() called.");
             mainPageController.refresh();
+            var awaknessLVL = mainPageController.getAwaknessLVL();
+            var awaknessLabel = mainPageController.getAwaknessLabel();
+            chartawakness.setData([{
+                y: 'Awakness',
+                a: awaknessLVL
+            }])
+            $('#awaknessLabel').text(awaknessLabel);
         });
     </script>
 
