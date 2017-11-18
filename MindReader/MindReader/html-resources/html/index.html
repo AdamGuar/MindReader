@@ -28,9 +28,7 @@
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
 
-
-  
-
+ 
 </head>
 <body>
     <div id="wrapper">
@@ -181,7 +179,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Brain wave band powers chart
@@ -216,24 +214,39 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <div class="col-lg-12">
+                    
+                    <!-- /.col-lg-4 -->
+                </div>
+                <div class="col-lg-4"> 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bell fa-fw"></i> Current brain wave state
+                                <i class="fa fa-bell fa-fw"></i> Current awakness state
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                            Actions
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <a href="#" id="reload-button">Refresh</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="alert alert-info">
                                     <strong>Info!</strong> Indicates a neutral informative change or action.
                                 </div>
+                                <div id="morris-bar-chart-awakness"></div>
                             </div>
                             <!-- /.panel-body -->
                         </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
                 </div>
-                <!-- /.panel .chat-panel -->
-                <!-- /.col-lg-4 -->
+
+
             </div>
             <!-- /.row -->
         </div>
@@ -320,6 +333,38 @@
         }, 1000);
 
     </script>
+
+
+    <!--Initial load of Awakness bar chart -->
+    <script>
+
+        var chartawakness = Morris.Bar({
+            element: 'morris-bar-chart-awakness',
+            data: [{
+                y: 'Awakness',
+                a: 20
+            }],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Awakness'],
+            ymax: 100,
+            barColors: function (row, series, type) {
+                return "#d9534f";
+            },
+            hideHover: 'auto',
+            resize: true
+        });
+
+    </script>
+    <!--Action handlers-->
+    <script>
+        $("#reload-button").click(function () {
+            alert("Handler for .click() called.");
+            mainPageController.refresh();
+        });
+    </script>
+
+
 
 
 </body>

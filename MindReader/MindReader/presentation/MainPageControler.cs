@@ -62,8 +62,11 @@ namespace MindReader.presentation
         {
             return ReaderWorker.currentState.Gamma;
         }
-
-
+        
+        public void refresh()
+        {
+            FuzzyModelRunner.Refresh();
+        }
 
     }
 
