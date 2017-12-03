@@ -3,6 +3,7 @@ using CefSharp.WinForms;
 using MindReader.integration;
 using MindReader.model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -76,6 +77,73 @@ namespace MindReader.presentation
         public string getAwaknessLabel()
         {
             return FuzzyModelRunner._Awankess_Label;
+        }
+
+        private List<StatisticalSummary> getStatData()
+        {
+            return ReaderWorker.StatBuffer.getData();
+        }
+
+
+        private StatisticalSummary getSummaryFromBuffer(int summaryIndex)
+        {
+            return getStatData()[summaryIndex];
+        }
+
+
+        public String getTimeStampFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).TimeStamp;
+        }
+
+        public double getAlphaFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).Data.Alpha;
+        }
+
+        public double getLowBetaFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).Data.Low_Beta;
+        }
+
+        public double getHighBetaFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).Data.High_Beta;
+        }
+
+        public double getGammaFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).Data.Gamma;
+        }
+
+        public double getThetaFromIndex(int index)
+        {
+            return getSummaryFromBuffer(index).Data.Theta;
+        }
+
+        public double getMeanForAlpha()
+        {
+            return ReaderWorker.StatBuffer.calculateMeanForAlpha();
+        }
+
+        public double getMeanForLowBeta()
+        {
+            return ReaderWorker.StatBuffer.calculateMeanForLow_Beta();
+        }
+
+        public double getMeanForHighBeta()
+        {
+            return ReaderWorker.StatBuffer.calculateMeanForHigh_Beta();
+        }
+
+        public double getMeanForGamma()
+        {
+            return ReaderWorker.StatBuffer.calculateMeanForGamma();
+        }
+
+        public double getMeanForTheta()
+        {
+            return ReaderWorker.StatBuffer.calculateMeanForTheta();
         }
 
 

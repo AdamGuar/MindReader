@@ -64,7 +64,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onclick="mainPageController.showDevTools();"><i class="fa fa-terminal" aria-hidden="true"></i> Open DevTools</a>
+                            <a href="#" onclick="mainPageController.showDevTools()"><i class="fa fa-terminal" aria-hidden="true"></i> Open DevTools</a>
                         </li>
                     </ul>
                 </div>
@@ -183,29 +183,6 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Brain wave band powers chart
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -213,6 +190,86 @@
                             <div id="morris-bar-chart"></div>
                         </div>
                         <!-- /.panel-body -->
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bar-chart-o fa-fw"></i> Average data
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Time</th>
+                                                        <th>Alhpa</th>
+                                                        <th>Low Beta</th>
+                                                        <th>High Beta</th>
+                                                        <th>Gamma</th>
+                                                        <th>Theta</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="stat-data-1">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-2">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-3">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-4"> 
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-5">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.col-lg-4 (nested) -->
+                                    <div class="col-lg-7">
+                                                    <div id="morris-bar-chart-statistics"></div>                                                
+                                    </div>
+                                    <!-- /.col-lg-8 (nested) -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+
+
                     </div>
                     
                     <!-- /.col-lg-4 -->
@@ -266,7 +323,7 @@
 
     <!--Scipt for refreshing dashbor values-->
     <script>
-
+       // console.log(mainPageController.getStatData());
         var chart = Morris.Bar({
             element: 'morris-bar-chart',
             data: [{
@@ -335,6 +392,93 @@
     </script>
 
 
+    <!--Scipt for refreshing statistic values-->
+    <script>
+            
+                    var statchart = Morris.Bar({
+                        element: 'morris-bar-chart-statistics',
+                        data: [{
+                            y: 'Alpha',
+                            a: 100,
+                            b: 200
+                        }, {
+                            y: 'Low Beta',
+                            a: 75,
+                            b: 200
+                        }, {
+                            y: 'High Beta',
+                            a: 50,
+                            b: 200
+                        }, {
+                            y: 'Gamma',
+                            a: 75,
+                            b: 200
+                        }, {
+                            y: 'Theta',
+                            a: 50,
+                            b: 200
+                        }],
+                        xkey: 'y',
+                        ykeys: ['a','b'],
+                        labels: ['Current band power', 'Mean'],
+                        ymax: 200,
+                        barColors: function (row, series, type) {
+                            if (row.label == "Alpha") return "#337ab7";
+                            else if (row.label == "Low Beta") return "#5cb85c";
+                            else if (row.label == "High Beta") return "#5cb85c";
+                            else if (row.label == "Gamma") return "#f0ad4e";
+                            else if (row.label == "Theta") return "#d9534f";
+                        },
+                        hideHover: 'auto',
+                        resize: true
+                    });
+            
+            
+                    window.setInterval(function () {
+                        var alpha = mainPageController.getAlhpaPower();
+                        var lowBeta = mainPageController.getLowBetaPower();
+                        var highBeta = mainPageController.getHighBetaPower();
+                        var gamma = mainPageController.getGammaPower();
+                        var theta = mainPageController.getThetaPower();
+                        var meanalpha = mainPageController.getMeanForAlpha();
+                        var meanlowBeta = mainPageController.getMeanForLowBeta();
+                        var meanhighBeta = mainPageController.getMeanForHighBeta();
+                        var meangamma = mainPageController.getMeanForGamma();
+                        var meantheta = mainPageController.getMeanForTheta();
+                        $('#alphaPlaceHolder').text(alpha);
+                        $('#lowBetaPlaceHolder').text(lowBeta);
+                        $('#highBetaPlaceHolder').text(highBeta);
+                        $('#gammaPlaceHolder').text(gamma);
+                        $('#thetaPlaceHolder').text(theta);
+            
+                        statchart.setData([{
+                            y: 'Alpha',
+                            a: alpha,
+                            b: meanalpha
+                        }, {
+                            y: 'Low Beta',
+                            a: lowBeta,
+                            b: meanlowBeta
+                        }, {
+                            y: 'High Beta',
+                            a: highBeta,
+                            b: meanhighBeta
+                        }, {
+                            y: 'Gamma',
+                            a: gamma,
+                            b: meangamma
+                        }, {
+                            y: 'Theta',
+                            a: theta,
+                            b: meantheta
+                        }]);
+            
+                    }, 1000);
+            
+                </script>
+
+
+
     <!--Initial load of Awakness bar chart -->
     <script>
 
@@ -369,6 +513,30 @@
             $('#awaknessLabel').text(awaknessLabel);
         });
     </script>
+
+    <!-- Script for filling statistic table-->
+    <script>
+        window.setInterval(function () {
+            text = "#stat-data-";
+
+            for (i = 0; i < 5; i++) {
+                text += i + 1;
+                console.log(text);
+                $(text+' #stat-time').text(mainPageController.getTimeStampFromIndex(i));
+                $(text+' #stat-alpha').text(mainPageController.getAlphaFromIndex(i));
+                $(text+' #stat-lowbeta').text(mainPageController.getLowBetaFromIndex(i));
+                $(text+' #stat-highbeta').text(mainPageController.getHighBetaFromIndex(i));
+                $(text+' #stat-gamma').text(mainPageController.getGammaFromIndex(i));
+                $(text + ' #stat-theta').text(mainPageController.getThetaFromIndex(i));
+                text = "#stat-data-";
+
+            }
+
+
+        }, 1000);
+    </script>
+
+
 
 
 

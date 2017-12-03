@@ -78,6 +78,11 @@ namespace MindReader
             chromeBrowser.RegisterJsObject("mainPageController", new MainPageControler(chromeBrowser, this));
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            chromeBrowser.ShowDevTools();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Cef.Shutdown();

@@ -71,6 +71,9 @@
     <Compile Include="integration\FuzzyModelRunner.cs" />
     <Compile Include="integration\ReaderWorker.cs" />
     <Compile Include="model\BrainWaveSummary.cs" />
+    <Compile Include="model\StaticBufferWrapper.cs" />
+    <Compile Include="model\StatisticalDataBuffer.cs" />
+    <Compile Include="model\StatisticalSummary.cs" />
     <Compile Include="presentation\MainPageControler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

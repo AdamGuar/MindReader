@@ -17,6 +17,7 @@ namespace MindReader.integration
 
         public static BrainWaveSummary currentState = BrainWaveSummary.generateDefaultState();
         public static String currentInformation = "";
+        static public StatisticalDataBuffer StatBuffer = new StatisticalDataBuffer();
 
         CSVFileReader reader = new CSVFileReader();
 
@@ -40,6 +41,7 @@ namespace MindReader.integration
             {
                 try {
                     ReaderWorker.currentState = filter(reader.readBandPowers());
+                    ReaderWorker.StatBuffer.addEntry(ReaderWorker.currentState);
                 }catch (CSVFileAccessException ex){
                     //Do nothing;
                 }
