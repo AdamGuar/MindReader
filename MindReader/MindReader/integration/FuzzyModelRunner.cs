@@ -27,7 +27,11 @@ namespace MindReader.integration
             double beta = ReaderWorker.currentState.Low_Beta + ReaderWorker.currentState.High_Beta;
             double gamma = ReaderWorker.currentState.Gamma;
 
-            string args = string.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", fileName, alpha, beta, gamma, "-fuzz");
+            String alphaString = alpha.ToString().Replace(',', '.');
+            String betaString = beta.ToString().Replace(',', '.');
+            String gammaString = gamma.ToString().Replace(',', '.');
+
+            string args = string.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", fileName, alphaString, betaString, gammaString, "-fuzz");
             p.StartInfo = new ProcessStartInfo(@"C:\Users\Adam\Anaconda3\python.exe", args)
             {
                 RedirectStandardOutput = true,
