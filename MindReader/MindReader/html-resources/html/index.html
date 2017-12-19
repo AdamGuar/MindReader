@@ -53,6 +53,9 @@
                         <li>
                             <a id="pause-play-menu-button" href="#" onclick="pausePlayFunction();"><i class="fa fa-pause" aria-hidden="true"></i>   Pause</a>
                         </li>
+                        <li>
+                            <a id="pause-play-menu-button" href="#" onclick="mainPageController.saveData();"><i class="fa fa-floppy-o" aria-hidden="true"></i>   Save</a>
+                        </li>
                         <li class="">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graphs<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -411,6 +414,12 @@
     <!--Scipt for refreshing dashbor values-->
     <script>
 
+        var globalAlhpa;
+        var globalLowBeta;
+        var globalHighBeta;
+        var globalGamma;
+        var globalTheta;
+
         $("#current-state-scroll").click(function () {
             $('html, body').animate({
                 scrollTop: $("#current-state-header").offset().top
@@ -482,6 +491,13 @@
                 var highBeta = mainPageController.getHighBetaPower();
                 var gamma = mainPageController.getGammaPower();
                 var theta = mainPageController.getThetaPower();
+
+                globalAlhpa = alpha;
+                globalLowBeta = lowBeta;
+                globalHighBeta = highBeta;
+                globalGamma = gamma;
+                globalTheta = theta;
+
                 $('#alphaPlaceHolder').text(alpha);
                 $('#lowBetaPlaceHolder').text(lowBeta);
                 $('#highBetaPlaceHolder').text(highBeta);

@@ -19,6 +19,8 @@ namespace MindReader.presentation
         // The form class needs to be changed according to yours
         private static Form1 _instanceMainForm = null;
 
+        private DataSaver dataSaver = new DataSaver();
+
 
         public MainPageControler(ChromiumWebBrowser originalBrowser, Form1 mainForm)
         {
@@ -144,6 +146,11 @@ namespace MindReader.presentation
         public double getMeanForTheta()
         {
             return ReaderWorker.StatBuffer.calculateMeanForTheta();
+        }
+
+        public void saveData()
+        {
+            dataSaver.saveCurrentState();
         }
 
 
