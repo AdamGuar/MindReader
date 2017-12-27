@@ -27,6 +27,14 @@
     <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
+
+    <!-- Data loading utils -->
+    <script src="../js/dataLoader.js"></script>
+
+    <script>
+        loadTestsData();
+    </script>
+
  
 </head>
 <body>
@@ -68,6 +76,12 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li class="">
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Tests<span class="fa arrow"></span></a>
+                                <ul id="tests-list" class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                         <li>
                             <a href="#" onclick="mainPageController.showDevTools()"><i class="fa fa-terminal" aria-hidden="true"></i> Open DevTools</a>
                         </li>
@@ -393,6 +407,31 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Modal Test-->
+        <div id="modal-test" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Test</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Name</h4>
+                    <p id="test-name">name</p>
+                    <h4>Description</h4>
+                    <p id="test-decription">Some text in the modal.</p>
+                    <h4>Media hiperlinks</h4>
+                    <a href="#" id="test-media-hiperlinks">Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
             </div>
         </div>
 
