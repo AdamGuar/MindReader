@@ -42,28 +42,28 @@ namespace MindReader.presentation
 
         public double getAlhpaPower()
         {
-            return ReaderWorker.currentState.Alpha;
+            return round2dec(ReaderWorker.currentState.Alpha);
         }
 
         public double getHighBetaPower()
         {
-            return ReaderWorker.currentState.High_Beta;
+            return round2dec(ReaderWorker.currentState.High_Beta);
         }
 
         public double getLowBetaPower()
         {
-            return ReaderWorker.currentState.Low_Beta;
+            return round2dec(ReaderWorker.currentState.Low_Beta);
         }
 
         public double getThetaPower()
         {
-            return ReaderWorker.currentState.Theta;
+            return round2dec(ReaderWorker.currentState.Theta);
         }
 
 
         public double getGammaPower()
         {
-            return ReaderWorker.currentState.Gamma;
+            return round2dec(ReaderWorker.currentState.Gamma);
         }
         
         public void refresh()
@@ -100,57 +100,63 @@ namespace MindReader.presentation
 
         public double getAlphaFromIndex(int index)
         {
-            return getSummaryFromBuffer(index).Data.Alpha;
+            return round2dec(getSummaryFromBuffer(index).Data.Alpha);
         }
 
         public double getLowBetaFromIndex(int index)
         {
-            return getSummaryFromBuffer(index).Data.Low_Beta;
+            return round2dec(getSummaryFromBuffer(index).Data.Low_Beta);
         }
 
         public double getHighBetaFromIndex(int index)
         {
-            return getSummaryFromBuffer(index).Data.High_Beta;
+            return round2dec(getSummaryFromBuffer(index).Data.High_Beta);
         }
 
         public double getGammaFromIndex(int index)
         {
-            return getSummaryFromBuffer(index).Data.Gamma;
+            return round2dec(getSummaryFromBuffer(index).Data.Gamma);
         }
 
         public double getThetaFromIndex(int index)
         {
-            return getSummaryFromBuffer(index).Data.Theta;
+            return round2dec(getSummaryFromBuffer(index).Data.Theta);
         }
 
         public double getMeanForAlpha()
         {
-            return ReaderWorker.StatBuffer.calculateMeanForAlpha();
+            return round2dec(ReaderWorker.StatBuffer.calculateMeanForAlpha());
         }
 
         public double getMeanForLowBeta()
         {
-            return ReaderWorker.StatBuffer.calculateMeanForLow_Beta();
+            return round2dec(ReaderWorker.StatBuffer.calculateMeanForLow_Beta());
         }
 
         public double getMeanForHighBeta()
         {
-            return ReaderWorker.StatBuffer.calculateMeanForHigh_Beta();
+            return round2dec(ReaderWorker.StatBuffer.calculateMeanForHigh_Beta());
         }
 
         public double getMeanForGamma()
         {
-            return ReaderWorker.StatBuffer.calculateMeanForGamma();
+            return round2dec(ReaderWorker.StatBuffer.calculateMeanForGamma());
         }
 
         public double getMeanForTheta()
         {
-            return ReaderWorker.StatBuffer.calculateMeanForTheta();
+            return round2dec(ReaderWorker.StatBuffer.calculateMeanForTheta());
         }
 
         public void saveData()
         {
             dataSaver.saveCurrentState();
+        }
+
+
+        private double round2dec(double input)
+        {
+            return Math.Round(input, 2);
         }
 
 

@@ -1,16 +1,10 @@
-{
-    "tests": [
-        {
-            "id": 1,
-            "name": "Audio test",
-            "description": "Brainwave entrainment, also referred to as brainwave synchronization and neural entrainment, refers to the capacity of the brain to naturally synchronize its brainwave frequencies with the rhythm of periodic external stimuli, most commonly auditory, visual, or tactile. It is hypothesized that listening to these beats of certain frequencies one can induce a desired state of consciousness that corresponds with specific neural activity. It is widely accepted that patterns of neural firing, measured in Hz, correspond with states of alertness such as focused attention, deep sleep, etc. No evidence supporting their claims has yet been found",
-            "media": "https://www.youtube.com/watch?v=t3217H8JppI"
-        },
-        {
-            "id": 2,
-            "name": "Video test",
-            "description": "Test should stimulate alpha brain waves",
-            "media": "https://www.youtube.com/watch?v=J73kveWTj68"
-        }
-    ]
+﻿{
+  "tests": [
+    {
+      "id": 1,
+      "name": "Audio test",
+      "description": "Audio test for brain waves",
+      "media": "https://www.youtube.com/watch?v=t3217H8JppI"
+    }
+  ]
 }

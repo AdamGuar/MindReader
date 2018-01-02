@@ -1,7 +1,8 @@
 function loadTestsData(){
     var data;
     $.ajax({
-        url: 'https://api.myjson.com/bins/gato7',
+        //url: 'https://api.myjson.com/bins/gato7',
+        url: 'tests.json',
         dataType: 'json',
         type: 'get',
         cache: 'false',
