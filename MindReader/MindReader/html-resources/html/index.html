@@ -18,25 +18,24 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!--Scipt for refreshing dashbor values-->
-    <script>
-  
-        window.setInterval(function () {
-            var alpha = mainPageController.getAlhpaPower();
-            var lowBeta = mainPageController.getLowBetaPower();
-            var highBeta = mainPageController.getHighBetaPower();
-            var gamma = mainPageController.getGammaPower();
-            var theta = mainPageController.getThetaPower();
-            $('#alphaPlaceHolder').text(alpha);
-            $('#lowBetaPlaceHolder').text(lowBeta);
-            $('#highBetaPlaceHolder').text(highBeta);
-            $('#gammaPlaceHolder').text(gamma);
-            $('#thetaPlaceHolder').text(theta);
-        }, 1000);
 
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Data loading utils -->
+    <script src="../js/dataLoader.js"></script>
+
+    <script>
+        loadTestsData();
     </script>
 
-
+ 
 </head>
 <body>
     <div id="wrapper">
@@ -49,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">MindReader v0.1</a>
+                <a class="navbar-brand" href="index.html">MindReader v1.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -60,95 +59,33 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a id="pause-play-menu-button" href="#" onclick="pausePlayFunction();"><i class="fa fa-pause" aria-hidden="true"></i>   Pause</a>
+                        </li>
+                        <li>
+                            <a id="pause-play-menu-button" href="#" onclick="mainPageController.saveData();"><i class="fa fa-floppy-o" aria-hidden="true"></i>   Save</a>
+                        </li>
+                        <li class="">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graphs<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="#" id="current-state-scroll">Current state</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="#" id="stat-state-scroll">Statistic</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li class="">
+                                <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Tests<span class="fa arrow"></span></a>
+                                <ul id="tests-list" class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                       <!--uncomment for debbuging purposes
                         <li>
-                            <a onclick="mainPageController.opencmd();"><i class="fa fa-terminal" aria-hidden="true"></i> Open CMD</a>
-                        </li>
-                        <li>
-                            <a onclick="mainPageController.showDevTools();"><i class="fa fa-terminal" aria-hidden="true"></i> Open DevTools</a>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                            <a href="#" onclick="mainPageController.showDevTools()"><i class="fa fa-terminal" aria-hidden="true"></i> Open DevTools</a>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -158,7 +95,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard - Current Wave Band Powers</h1>
+                    <h1 class="page-header">Dashboard - Current Band Powers</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -174,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#AlphaModal">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -193,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#BetaModal">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -212,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#BetaModal">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -227,11 +164,11 @@
                             <div class="row">
                                 <div class="col-xs-9 text-right">
                                     <div id="gammaPlaceHolder" class="huge">13</div>
-                                    <div>High Beta</div>
+                                    <div>Gamma</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#GammaModal">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -250,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#ThetaModal">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -264,45 +201,243 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div id="current-state-header" class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Brain wave band powers chart
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <!-- <div id="morris-area-chart"></div>-->
+                            <div id="morris-bar-chart"></div>
                         </div>
                         <!-- /.panel-body -->
+
+                        <div class="panel panel-default">
+                            <div id="stat-state-header" class="panel-heading">
+                                <i class="fa fa-bar-chart-o fa-fw"></i> Average data
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Time</th>
+                                                        <th>Alhpa</th>
+                                                        <th>Low Beta</th>
+                                                        <th>High Beta</th>
+                                                        <th>Gamma</th>
+                                                        <th>Theta</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="stat-data-1">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-2">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-3">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-4"> 
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    <tr id="stat-data-5">
+                                                        <td id="stat-time">3:29 PM</td>
+                                                        <td id="stat-alpha">100</td>
+                                                        <td id="stat-lowbeta">100</td>
+                                                        <td id="stat-highbeta">100</td>
+                                                        <td id="stat-gamma">100</td>
+                                                        <td id="stat-theta">100</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.col-lg-4 (nested) -->
+                                    <div class="col-lg-7">
+                                                    <div id="morris-bar-chart-statistics"></div>                                                
+                                    </div>
+                                    <!-- /.col-lg-8 (nested) -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+
+
                     </div>
+                    
+                    <!-- /.col-lg-4 -->
                 </div>
-                <!-- /.panel .chat-panel -->
-                <!-- /.col-lg-4 -->
+                <div class="col-lg-4"> 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i> Current awakness state
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                            Actions
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <a href="#" id="reload-button">Refresh</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div id="awaknessLabel" class="alert alert-info">
+                                    <strong>Info!</strong> Indicates a neutral informative change or action.
+                                </div>
+                                <div id="morris-bar-chart-awakness"></div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                </div>
+
+
             </div>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+        <!-- Modal Alpha-->
+        <div id="AlphaModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Alpha Brain Waves</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Alpha brainwaves are dominant during quietly flowing thoughts, and in some meditative states. Alpha is ‘the power of now’, being here, in the present. Alpha is the resting state for the brain. Alpha waves aid overall mental coordination, calmness, alertness, mind/body integration and learning.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal Beta-->
+        <div id="BetaModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Beta Brain Waves</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Beta brainwaves dominate our normal waking state of consciousness when attention is directed towards cognitive tasks and the outside world. Beta is a ‘fast’ activity, present when we are alert, attentive, engaged in problem solving, judgment, decision making, or focused mental activity. </p>
+                        <p>Beta brainwaves are further divided into three bands; Lo-Beta (Beta1, 12-15Hz) can be thought of as a 'fast idle', or musing. Beta (Beta2, 15-22Hz) is high engagement or actively figuring something out. Hi-Beta (Beta3, 22-38Hz) is highly complex thought, integrating new experiences, high anxiety, or excitement. Continual high frequency processing is not a very efficient way to run the brain, as it takes a tremendous amount of energy. </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal Gamma-->
+        <div id="GammaModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Gamma Brain Waves</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Gamma brainwaves are the fastest of brain waves (high frequency, like a flute), and relate to simultaneous processing of information from different brain areas. Gamma brainwaves pass information rapidly and quietly. The most subtle of the brainwave frequencies, the mind has to be quiet to access gamma.</p>
+                        <p>Gamma was dismissed as 'spare brain noise' until researchers discovered it was highly active when in states of universal love, altruism, and the ‘higher virtues’. Gamma is also above the frequency of neuronal firing, so how it is generated remains a mystery. It is speculated that gamma rhythms modulate perception and consciousness, and that a greater presence of gamma relates to expanded consciousness and spiritual emergence.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal Theta-->
+        <div id="ThetaModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Theta Brain Waves</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Theta brainwaves occur most often in sleep but are also dominant in deep meditation. Theta is our gateway to learning, memory, and intuition. In theta, our senses are withdrawn from the external world and focused on signals originating from within. It is that twilight state which we normally only experience fleetingly as we wake or drift off to sleep. In theta we are in a dream; vivid imagery, intuition and information beyond our normal conscious awareness. It’s where we hold our ‘stuff’, our fears, troubled history, and nightmares.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal Test-->
+        <div id="modal-test" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Test</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Name</h4>
+                    <p id="test-name">name</p>
+                    <h4>Description</h4>
+                    <p id="test-decription">Some text in the modal.</p>
+                    <h4>Media hiperlinks</h4>
+                    <a href="#" id="test-media-hiperlinks">Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
@@ -311,11 +446,273 @@
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
+    
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+
+    <!--Scipt for refreshing dashbor values-->
+    <script>
+
+        var globalAlhpa;
+        var globalLowBeta;
+        var globalHighBeta;
+        var globalGamma;
+        var globalTheta;
+
+        $("#current-state-scroll").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#current-state-header").offset().top
+            }, 2000);
+            return false;
+        });
+
+        $("#stat-state-scroll").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#stat-state-header").offset().top
+            }, 2000);
+            return false;
+        });
+
+
+        var pasued = false;
+
+        function pausePlayFunction() {
+            window.paused = !window.paused;
+            if (!window.paused) {
+                $("#pause-play-menu-button").html(
+                    '<i class="fa fa-pause" aria-hidden="true"></i>Pause</a>');
+            } else {
+                $("#pause-play-menu-button").html(
+                    '<i class="fa fa-play" aria-hidden="true"></i>Resume</a>');
+            }
+        }
+
+       // console.log(mainPageController.getStatData());
+        var chart = Morris.Bar({
+            element: 'morris-bar-chart',
+            data: [{
+                y: 'Alpha',
+                a: 100
+            }, {
+                y: 'Low Beta',
+                a: 75
+            }, {
+                y: 'High Beta',
+                a: 50
+            }, {
+                y: 'Gamma',
+                a: 75
+            }, {
+                y: 'Theta',
+                a: 50
+            }],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Band power'],
+            ymax: 200,
+            barColors: function (row, series, type) {
+                if (row.label == "Alpha") return "#337ab7";
+                else if (row.label == "Low Beta") return "#5cb85c";
+                else if (row.label == "High Beta") return "#5cb85c";
+                else if (row.label == "Gamma") return "#f0ad4e";
+                else if (row.label == "Theta") return "#d9534f";
+            },
+            hideHover: 'auto',
+            resize: true
+        });
+
+
+        window.setInterval(function () {
+            console.log(window.paused);
+            if (!window.paused){
+                var alpha = mainPageController.getAlhpaPower();
+                var lowBeta = mainPageController.getLowBetaPower();
+                var highBeta = mainPageController.getHighBetaPower();
+                var gamma = mainPageController.getGammaPower();
+                var theta = mainPageController.getThetaPower();
+
+                globalAlhpa = alpha;
+                globalLowBeta = lowBeta;
+                globalHighBeta = highBeta;
+                globalGamma = gamma;
+                globalTheta = theta;
+
+                $('#alphaPlaceHolder').text(alpha);
+                $('#lowBetaPlaceHolder').text(lowBeta);
+                $('#highBetaPlaceHolder').text(highBeta);
+                $('#gammaPlaceHolder').text(gamma);
+                $('#thetaPlaceHolder').text(theta);
+
+                chart.setData([{
+                    y: 'Alpha',
+                    a: alpha
+                }, {
+                    y: 'Low Beta',
+                    a: lowBeta
+                }, {
+                    y: 'High Beta',
+                    a: highBeta
+                }, {
+                    y: 'Gamma',
+                    a: gamma
+                }, {
+                    y: 'Theta',
+                    a: theta
+                }]);
+            }
+        }, 1000);
+
+
+
+    //<!--Scipt for refreshing statistic values-->
+            
+                    var statchart = Morris.Bar({
+                        element: 'morris-bar-chart-statistics',
+                        data: [{
+                            y: 'Alpha',
+                            a: 100,
+                            b: 200
+                        }, {
+                            y: 'Low Beta',
+                            a: 75,
+                            b: 200
+                        }, {
+                            y: 'High Beta',
+                            a: 50,
+                            b: 200
+                        }, {
+                            y: 'Gamma',
+                            a: 75,
+                            b: 200
+                        }, {
+                            y: 'Theta',
+                            a: 50,
+                            b: 200
+                        }],
+                        xkey: 'y',
+                        ykeys: ['a','b'],
+                        labels: ['Current band power', 'Mean'],
+                        ymax: 200,
+                        barColors: function (row, series, type) {
+                            if (row.label == "Alpha") return "#337ab7";
+                            else if (row.label == "Low Beta") return "#5cb85c";
+                            else if (row.label == "High Beta") return "#5cb85c";
+                            else if (row.label == "Gamma") return "#f0ad4e";
+                            else if (row.label == "Theta") return "#d9534f";
+                        },
+                        hideHover: 'auto',
+                        resize: true
+                    });
+            
+            
+                    window.setInterval(function () {
+                        if (!window.paused) {
+                            var alpha = mainPageController.getAlhpaPower();
+                            var lowBeta = mainPageController.getLowBetaPower();
+                            var highBeta = mainPageController.getHighBetaPower();
+                            var gamma = mainPageController.getGammaPower();
+                            var theta = mainPageController.getThetaPower();
+                            var meanalpha = mainPageController.getMeanForAlpha();
+                            var meanlowBeta = mainPageController.getMeanForLowBeta();
+                            var meanhighBeta = mainPageController.getMeanForHighBeta();
+                            var meangamma = mainPageController.getMeanForGamma();
+                            var meantheta = mainPageController.getMeanForTheta();
+                            $('#alphaPlaceHolder').text(alpha);
+                            $('#lowBetaPlaceHolder').text(lowBeta);
+                            $('#highBetaPlaceHolder').text(highBeta);
+                            $('#gammaPlaceHolder').text(gamma);
+                            $('#thetaPlaceHolder').text(theta);
+
+                            statchart.setData([{
+                                y: 'Alpha',
+                                a: alpha,
+                                b: meanalpha
+                            }, {
+                                y: 'Low Beta',
+                                a: lowBeta,
+                                b: meanlowBeta
+                            }, {
+                                y: 'High Beta',
+                                a: highBeta,
+                                b: meanhighBeta
+                            }, {
+                                y: 'Gamma',
+                                a: gamma,
+                                b: meangamma
+                            }, {
+                                y: 'Theta',
+                                a: theta,
+                                b: meantheta
+                            }]);
+                        }
+                    }, 1000);
+            
+
+
+   // <!--Initial load of Awakness bar chart -->
+ 
+        var chartawakness = Morris.Bar({
+            element: 'morris-bar-chart-awakness',
+            data: [{
+                y: 'Awakness',
+                a: 20
+            }],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Awakness'],
+            ymax: 100,
+            barColors: function (row, series, type) {
+                return "#d9534f";
+            },
+            hideHover: 'auto',
+            resize: true
+        });
+
+
+  //  <!--Action handlers-->
+
+        $("#reload-button").click(function () {
+            mainPageController.refresh();
+            var awaknessLVL = mainPageController.getAwaknessLVL();
+            var awaknessLabel = mainPageController.getAwaknessLabel();
+            chartawakness.setData([{
+                y: 'Awakness',
+                a: awaknessLVL
+            }])
+            $('#awaknessLabel').text(awaknessLabel);
+        });
+
+
+   // <!-- Script for filling statistic table-->
+        window.setInterval(function () {
+            if (!window.paused){
+                text = "#stat-data-";
+                for (i = 0; i < 5; i++) {
+                    text += i + 1;
+                    $(text+' #stat-time').text(mainPageController.getTimeStampFromIndex(i));
+                    $(text+' #stat-alpha').text(mainPageController.getAlphaFromIndex(i));
+                    $(text+' #stat-lowbeta').text(mainPageController.getLowBetaFromIndex(i));
+                    $(text+' #stat-highbeta').text(mainPageController.getHighBetaFromIndex(i));
+                    $(text+' #stat-gamma').text(mainPageController.getGammaFromIndex(i));
+                    $(text + ' #stat-theta').text(mainPageController.getThetaFromIndex(i));
+                    text = "#stat-data-";
+                    console.log(text);
+                }
+            }
+
+        }, 1000);
+
+
+
+
+
+    </script>
+
+
+
+
+
+
 </body>
 </html>

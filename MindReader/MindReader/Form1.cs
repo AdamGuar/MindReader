@@ -11,6 +11,8 @@ using CefSharp;
 using CefSharp.WinForms;
 using System.IO;
 using MindReader.presentation;
+using MindReader.integration;
+using System.Threading;
 
 namespace MindReader
 {
@@ -56,15 +58,35 @@ namespace MindReader
 
         public Form1()
         {
+            //Reader thread initialization
+            BandDataExeRunner runner = new BandDataExeRunner();
+            runner.RunBandReader();
+
+            ReaderWorker workerObject = new ReaderWorker();
+            workerObject.addFilter(new BasicDataFilter());
+            Thread workerThread = new Thread(workerObject.StartReading);
+            workerThread.Priority = ThreadPriority.Highest;
+            workerThread.Start();
+            while (!workerThread.IsAlive) ;
+            Thread.Sleep(1000);
+            //End of reader thread initialization
+
+
             InitializeComponent();
             InitializeChromium();
             // Register an object in javascript named "cefCustomObject" with function of the CefCustomObject class :3
             chromeBrowser.RegisterJsObject("mainPageController", new MainPageControler(chromeBrowser, this));
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            chromeBrowser.ShowDevTools();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Cef.Shutdown();
+            integration.BandDataExeRunner.StopBandDataRaderProcess();
         }
 
     }

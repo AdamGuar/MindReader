@@ -11,10 +11,16 @@ namespace MindReader.integration
     class BandDataExeRunner
     {
         String exePath = string.Format(@"{0}\external\AverageBandPowers.exe", Application.StartupPath);
+        public static Process BandDatareaderProcess;
 
         public void RunBandReader()
         {
-            Process.Start(exePath);
+            BandDatareaderProcess = Process.Start(exePath);
+        }
+
+        public static void StopBandDataRaderProcess()
+        {
+            BandDatareaderProcess.Close();
         }
 
     }
